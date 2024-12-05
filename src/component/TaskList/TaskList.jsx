@@ -13,16 +13,16 @@ const Task = ({ data }) => {
     >
       {data.tasks.map((elem,idx) => {
         if (elem.status.pending) {
-          return <AcceptTask key={idx} data={data} />;
+          return <AcceptTask key={idx} data={elem} />;
         }
         if (elem.status.completed) {
-          return <CompletedTask  key={idx} data={data}/>;
+          return <CompletedTask  key={idx} data={elem}/>;
         }
         if (elem.status.failed) {
-          return <FailedTask key={idx} data={data} />;
+          return <FailedTask key={idx} data={elem} />;
         }
         if (elem.status.inProgress) {
-          return <InProgressTask key={idx} data={data} />;
+          return <InProgressTask key={idx} data={elem} />;
         }
       })}
     </div>
