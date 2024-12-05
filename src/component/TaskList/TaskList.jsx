@@ -1,48 +1,32 @@
 import React from "react";
-const Task=({data})=>{
-    return(
-        <div id="tasklist" className=" overflow-x-auto h-[55%] w-full flex items-center justify-start gap-5 flex-nowrap py-5 mt-10">
-            <div className="h-full w-[300px] p-5 bg-red-400 rounded-xl flex-shrink-0">
-                <div className="flex justify-between items-center">
-                <h3 className="bg-yellow-400  text-sm px-10 py-1 rounded">High</h3>
-                <h4 className="text-sm">15 Nov 2024</h4>
-                </div>
-                <h2 className="mt-5 text-2xl font-semibold"> DO 2 question of DSA</h2>
-                <p className="text-sm mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis exercitationem alias iusto sint neque aspernatur quia necessitatibus explicabo nam facere.</p>
-            </div>
-            <div className="h-full w-[300px] p-5 bg-blue-400 rounded-xl flex-shrink-0">
-                <div className="flex justify-between items-center">
-                <h3 className="bg-yellow-400  text-sm px-10 py-1 rounded">High</h3>
-                <h4 className="text-sm">15 Nov 2024</h4>
-                </div>
-                <h2 className="mt-5 text-2xl font-semibold"> DO 2 question of DSA</h2>
-                <p className="text-sm mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis exercitationem alias iusto sint neque aspernatur quia necessitatibus explicabo nam facere.</p>
-            </div>
-            <div className="h-full w-[300px] p-5 bg-green-400 rounded-xl flex-shrink-0">
-                <div className="flex justify-between items-center">
-                <h3 className="bg-yellow-400  text-sm px-10 py-1 rounded">High</h3>
-                <h4 className="text-sm">15 Nov 2024</h4>
-                </div>
-                <h2 className="mt-5 text-2xl font-semibold"> DO 2 question of DSA</h2>
-                <p className="text-sm mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis exercitationem alias iusto sint neque aspernatur quia necessitatibus explicabo nam facere.</p>
-            </div>
-            <div className="h-full w-[300px] p-5 bg-pink-400 rounded-xl flex-shrink-0">
-                <div className="flex justify-between items-center">
-                <h3 className="bg-yellow-400  text-sm px-10 py-1 rounded">High</h3>
-                <h4 className="text-sm">15 Nov 2024</h4>
-                </div>
-                <h2 className="mt-5 text-2xl font-semibold"> DO 2 question of DSA</h2>
-                <p className="text-sm mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis exercitationem alias iusto sint neque aspernatur quia necessitatibus explicabo nam facere.</p>
-            </div>
-            <div className="h-full w-[300px] p-5 bg-orange-400 rounded-xl flex-shrink-0">
-                <div className="flex justify-between items-center">
-                <h3 className="bg-yellow-400  text-sm px-10 py-1 rounded">High</h3>
-                <h4 className="text-sm">15 Nov 2024</h4>
-                </div>
-                <h2 className="mt-5 text-2xl font-semibold"> DO 2 question of DSA</h2>
-                <p className="text-sm mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis exercitationem alias iusto sint neque aspernatur quia necessitatibus explicabo nam facere.</p>
-            </div>
-        </div>
-    )
-}
-export default Task
+import AcceptTask from "./AcceptTaskList";
+import NewTask from "./Inprogress";
+import CompletedTask from "./completeTask";
+import FailedTask from "./failedTask";
+import InProgressTask from "./Inprogress";
+
+const Task = ({ data }) => {
+  return (
+    <div
+      id="tasklist"
+      className="overflow-x-auto h-[55%] w-full flex items-center justify-start gap-5 flex-nowrap py-5 mt-10"
+    >
+      {data.tasks.map((elem,idx) => {
+        if (elem.status.pending) {
+          return <AcceptTask key={idx} data={data} />;
+        }
+        if (elem.status.completed) {
+          return <CompletedTask  key={idx} data={data}/>;
+        }
+        if (elem.status.failed) {
+          return <FailedTask key={idx} data={data} />;
+        }
+        if (elem.status.inProgress) {
+          return <InProgressTask key={idx} data={data} />;
+        }
+      })}
+    </div>
+  );
+};
+
+export default Task;
