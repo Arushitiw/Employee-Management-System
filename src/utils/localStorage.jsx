@@ -1,4 +1,3 @@
-
 const employees = [
   {
     id: 1,
@@ -48,10 +47,9 @@ const employees = [
     ],
     taskSummary: {
       completed: 0,
-      inProgress: 1,
-      pending: 1,
-      onHold: 1,
-      review: 0
+      active: 1, // Maps to `inProgress`
+      newTask: 1, // Maps to `pending`
+      failedTask: 1 // Maps to `onHold`
     }
   },
   {
@@ -89,10 +87,9 @@ const employees = [
     ],
     taskSummary: {
       completed: 1,
-      inProgress: 1,
-      pending: 0,
-      onHold: 0,
-      review: 1
+      active: 1,
+      newTask: 0,
+      failedTask: 0
     }
   },
   {
@@ -130,10 +127,9 @@ const employees = [
     ],
     taskSummary: {
       completed: 0,
-      inProgress: 1,
-      pending: 1,
-      onHold: 0,
-      review: 0
+      active: 1,
+      newTask: 1,
+      failedTask: 0
     }
   },
   {
@@ -171,10 +167,9 @@ const employees = [
     ],
     taskSummary: {
       completed: 0,
-      inProgress: 1,
-      pending: 1,
-      onHold: 0,
-      review: 0
+      active: 1,
+      newTask: 1,
+      failedTask: 0
     }
   },
   {
@@ -212,10 +207,9 @@ const employees = [
     ],
     taskSummary: {
       completed: 0,
-      inProgress: 0,
-      pending: 1,
-      onHold: 0,
-      review: 1
+      active: 0,
+      newTask: 1,
+      failedTask: 0
     }
   }
 ];
@@ -237,7 +231,3 @@ export const getLocalStorage = () => {
   const admin = JSON.parse(localStorage.getItem("admin")) || null;
   return { employees, admin };
 };
-
-
-
-
